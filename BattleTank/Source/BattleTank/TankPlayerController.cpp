@@ -13,7 +13,7 @@ void ATankPlayerController::BeginPlay()
 	else
 {
 		FString TankName = GetControlledTank()->GetName();
-		UE_LOG(LogTemp, Warning, TEXT("Controlled Tank is %s"), *TankName) }
+		UE_LOG(LogTemp, Warning, TEXT("Controlled Tank by Player is %s"), *TankName) }
 }
 
 ATank* ATankPlayerController::GetControlledTank() const
