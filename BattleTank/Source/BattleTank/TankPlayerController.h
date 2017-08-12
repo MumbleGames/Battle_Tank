@@ -26,4 +26,15 @@ private :
 	// move the barrel so that a shot would hit where the crosshair intersects the world
 	void AimTowardsCrosshair();
 	bool GetSightRayHitLocation(FVector& Location) const;
+
+	bool GetLookDirection(FVector2D &ScreenLocation, FVector &WLocation, FVector &WDirection) const;
+	bool GetLookVectorHitLocation(FVector &HitLocation, FVector Start, FVector AimDirection) const;
+
+	UPROPERTY(EditAnywhere)
+		float CrossHairXLocation = 0.5;
+	UPROPERTY(EditAnywhere)
+		float CrossHairYLocation = 0.33333;
+	UPROPERTY(EditAnywhere)
+		float LineTraceRange = 1000000;
+
 };
