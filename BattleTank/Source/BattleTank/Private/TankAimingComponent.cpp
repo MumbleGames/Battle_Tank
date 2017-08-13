@@ -3,6 +3,7 @@
 #include "TankAimingComponent.h"
 #include "Components/StaticMeshComponent.h"
 #include "Kismet/GameplayStatics.h"
+#include "TankBarrel.h"
 
 // Sets default values for this component's properties
 UTankAimingComponent::UTankAimingComponent()
@@ -15,28 +16,12 @@ UTankAimingComponent::UTankAimingComponent()
 }
 
 
-void UTankAimingComponent::SetBarrelReference(UStaticMeshComponent * BarrelToSet)
+void UTankAimingComponent::SetBarrelReference(UTankBarrel * BarrelToSet)
 {
 	Barrel = BarrelToSet;
 }
 
 // Called when the game starts
-void UTankAimingComponent::BeginPlay()
-{
-	Super::BeginPlay();
-
-	// ...
-	
-}
-
-
-// Called every frame
-void UTankAimingComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
-{
-	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
-
-	// ...
-}
 
 void UTankAimingComponent::AimLogging(FVector AimLocation, float LaunchSpeed)
 {
@@ -47,10 +32,21 @@ void UTankAimingComponent::AimLogging(FVector AimLocation, float LaunchSpeed)
 
 	// calculate the OutLaunchVelocity
 	
-	if (UGameplayStatics::SuggestProjectileVelocity(this, OutLaunchVelocity, StartLocation, AimLocation, LaunchSpeed, false, 0, 0, ESuggestProjVelocityTraceOption::DoNotTrace))
+	if (UGameplayStatics::SuggestProjectileVelocity(this, OutLaunchVelocity, StartLocation, AimLocation, LaunchSpeed,ESuggestProjVelocityTraceOption::DoNotTrace))
 	{
 		auto AimDirection = OutLaunchVelocity.GetSafeNormal();
-		UE_LOG(LogTemp, Warning, TEXT("%s is Aiming At %s"), *GetOwner()->GetName(), *AimDirection.ToString())
+		MoveBarrel(AimDirection);
+
 	}
+}
+
+void UTankAimingComponent::MoveBarrel(FVector DirectionVector)
+{
+	auto BarrelRotator = Barrel->GetForwardVector().Rotation();
+	auto AimRotator = DirectionVector.Rotation();
+	auto DeltaRotator = AimRotator - BarrelRotator;
+
+	UE_LOG(LogTemp, Warning, TEXT("Barrel Elevate Call"))
+		Barrel->Elevate(5);
 }
 
