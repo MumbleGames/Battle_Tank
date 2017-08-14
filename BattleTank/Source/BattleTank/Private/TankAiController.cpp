@@ -16,8 +16,6 @@ void ATankAiController::BeginPlay()
 	}
 }
 
-
-
 void ATankAiController::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
