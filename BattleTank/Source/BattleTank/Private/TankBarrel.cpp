@@ -10,6 +10,9 @@ void UTankBarrel::Elevate(float RelativeSpeed)
 	// calculate angle of rotation (sinus)
 	// Rotate the Barrel of the Angle Rotation given a max Elevation speed and the frametime
 	
+	auto ElevationChange = FMath::Clamp<float>(RelativeSpeed,-1,1) * MaxDegreesPerSecond * GetWorld()->DeltaTimeSeconds;
+	auto RawNewElevation = FMath::Clamp(RelativeRotation.Pitch + ElevationChange, MinElevationDegrees, MaxElevationDegrees);
+	SetRelativeRotation(FRotator(RawNewElevation, 0, 0));
 	
 }
 
