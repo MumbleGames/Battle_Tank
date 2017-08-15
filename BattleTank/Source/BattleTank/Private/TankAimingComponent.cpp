@@ -51,7 +51,7 @@ void UTankAimingComponent::AimLogging(FVector AimLocation, float LaunchSpeed)
 	else
 	{
 		auto Time = GetWorld()->GetTimeSeconds();
-		UE_LOG(LogTemp, Warning, TEXT("%f : can't find a solution"), Time)
+		UE_LOG(LogTemp, Warning, TEXT("%f : can't find a solution for projectile path"), Time)
 	}
 }
 
@@ -60,7 +60,6 @@ void UTankAimingComponent::MoveBarrel(FVector DirectionVector)
 	auto BarrelRotator = Barrel->GetForwardVector().Rotation();
 	auto AimRotator = DirectionVector.Rotation();
 	auto DeltaRotator = AimRotator - BarrelRotator;
-	UE_LOG(LogTemp, Warning, TEXT(" solution found"))
 	
 		Barrel->Elevate(DeltaRotator.Pitch);
 }

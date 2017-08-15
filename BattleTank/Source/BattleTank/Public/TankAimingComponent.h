@@ -26,7 +26,6 @@ public:
 
 	void AimLogging(FVector AimLocation, float LaunchSpeed);
 
-	//TODO SetTurretReference
 
 private:
 

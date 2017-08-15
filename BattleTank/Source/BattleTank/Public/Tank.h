@@ -10,8 +10,6 @@ class UTankBarrel;
 class UTankAimingComponent;
 class UTankTurret;
 
-
-
 UCLASS()
 class BATTLETANK_API ATank : public APawn
 {
@@ -26,6 +24,9 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = setup)
 		void SetTurretReference(UTankTurret* TurretToSet);
+
+	UFUNCTION(BlueprintCallable)
+		void Fire();
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;

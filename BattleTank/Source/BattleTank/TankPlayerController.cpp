@@ -35,8 +35,12 @@ void ATankPlayerController::AimTowardsCrosshair()
 	if (!GetControlledTank()) { return; }
 
 	FVector OUTHitLocation; // OUT parameter
-	GetSightRayHitLocation(OUTHitLocation); // this is doing linetrace
-	GetControlledTank()->AimAt(OUTHitLocation);
+	if (GetSightRayHitLocation(OUTHitLocation)) // this is doing linetrace
+	{
+		GetControlledTank()->AimAt(OUTHitLocation);
+	}
+	else {UE_LOG(LogTemp,Warning, TEXT("%f : Can't See Aim-Target"), GetWorld()->GetTimeSeconds()) }
+
 }
 
 // Get world location of linetrace through crosshair, true if hits landscape
