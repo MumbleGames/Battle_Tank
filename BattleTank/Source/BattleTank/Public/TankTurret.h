@@ -22,7 +22,7 @@ public :
 
 private:
 
-	UPROPERTY(EditAnywhere, Category = Setup)
+	UPROPERTY(EditDefaultsOnly, Category = Setup)
 		float MaxRotatingSpeed = 30;
 
 
