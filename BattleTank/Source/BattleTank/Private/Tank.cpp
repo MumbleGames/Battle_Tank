@@ -4,6 +4,7 @@
 #include "TankBarrel.h"
 #include "Engine/World.h"
 #include "Projectile.h"
+#include "TankMovementComponent.h"
 #include "TankAimingComponent.h"
 
 // Sets default values
@@ -14,7 +15,6 @@ ATank::ATank()
 
 	// no need to protect pointer as added  at construction
 	TankAimingComponent = CreateDefaultSubobject<UTankAimingComponent>(FName("AimingComponent"));
-
 }
 
 // Called when the game starts or when spawned
@@ -47,7 +47,6 @@ void ATank::Fire()
 		LastFireTime = FPlatformTime::Seconds();
 	}
 }
-
 
 // Called to bind functionality to input
 void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
