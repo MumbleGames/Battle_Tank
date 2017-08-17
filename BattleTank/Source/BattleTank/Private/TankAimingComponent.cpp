@@ -51,7 +51,7 @@ void UTankAimingComponent::AimLogging(FVector AimLocation, float LaunchSpeed)
 	else
 	{
 		auto Time = GetWorld()->GetTimeSeconds();
-		UE_LOG(LogTemp, Warning, TEXT("%f : can't find a solution for projectile path"), Time)
+		//UE_LOG(LogTemp, Warning, TEXT("%f : can't find a solution for projectile path"), Time)
 	}
 }
 
