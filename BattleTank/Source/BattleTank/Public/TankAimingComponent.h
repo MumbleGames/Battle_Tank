@@ -10,31 +10,40 @@
 class UTankBarrel; //Holds barrel's properties
 class UTankTurret; // Holds Turret Property
 
-
+UENUM()
+enum class EFiringStatus : uint8 { Reloading, Aiming, Locked};
+/**
+* Responsible for aiming the tank's fires
+*/
 UCLASS(ClassGroup=(Custom), meta=(BlueprintSpawnableComponent))
 class BATTLETANK_API UTankAimingComponent : public UActorComponent
 {
 	GENERATED_BODY()
 
-public:	
-	// Sets default values for this component's properties
-	UTankAimingComponent();
+public:
 
-	void SetBarrelReference(UTankBarrel* BarrelToSet);
-
-	void SetTurretReference(UTankTurret* TurretToSet);
+	UFUNCTION(BlueprintCallable, Category = "Setup")
+	void Initialise(UTankTurret* TurretToSet, UTankBarrel* BarrelToSet);
 
 	void AimLogging(FVector AimLocation, float LaunchSpeed);
+	
+		
 
+protected :
+
+	UPROPERTY(BlueprintReadOnly, Category = "State")
+		EFiringStatus AimingStatus = EFiringStatus::Reloading;
+
+		
 
 private:
-
-	UTankBarrel* Barrel = nullptr;
-
-	UTankTurret* Turret = nullptr;
+	// Sets default values for this component's properties
+	UTankAimingComponent();
 
 	void MoveBarrel(FVector DirectionVector);
 
 	void MoveTurret(FVector DirectionVector);
 	
+	UTankBarrel* Barrel = nullptr;
+	UTankTurret* Turret = nullptr;
 };

@@ -25,8 +25,6 @@ void UTankMovementComponent::Initialize(UTankTrack* LeftTrackToSet, UTankTrack* 
 	
 	LeftTrack = LeftTrackToSet;
 	RightTrack = RightTrackToSet;
-
-	//TODO Empecher le double speed du au l'utilisation des deux controls.
 }
 
 void UTankMovementComponent::RequestDirectMove(const FVector & MoveVelocity, bool bForceMaxSpeed)
@@ -39,6 +37,5 @@ void UTankMovementComponent::RequestDirectMove(const FVector & MoveVelocity, boo
 
 	IntendMoveForward(ForwardThrow);
 	IntendTurnRight(SideVector.Z*3);
-	UE_LOG(LogTemp, Warning, TEXT(" this shit is %f"),SideVector.Z)
 }
 

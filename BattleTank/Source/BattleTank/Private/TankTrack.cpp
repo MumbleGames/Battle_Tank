@@ -4,13 +4,11 @@
 
 
 
-
-
 void UTankTrack::SetThrottle(float Throttle)
 {
 
 
-		//Clamp Throttle Value so the Axis Sensitivity doesn't accelerate the Throttle
+		//TODO Clamp Throttle Value so the Axis Sensitivity doesn't accelerate the Throttle
 
 		auto ForceApplied = GetForwardVector() * Throttle * TrackMaxDrivingForce;
 		auto ForceLocation = GetComponentLocation();

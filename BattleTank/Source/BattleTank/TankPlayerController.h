@@ -18,9 +18,14 @@ public :
 	void BeginPlay() override;
 	void Tick(float Deltatime) override;
 
+
+protected:
+
+	UFUNCTION(BlueprintCallable, Category = "Setup")
+		ATank* GetControlledTank() const;
+
 private :
 
-	ATank* GetControlledTank() const;
 	// move the barrel so that a shot would hit where the crosshair intersects the world
 	void AimTowardsCrosshair();
 	bool GetSightRayHitLocation(FVector& Location) const;
