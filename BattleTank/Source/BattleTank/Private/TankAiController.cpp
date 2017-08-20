@@ -1,7 +1,6 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "TankAiController.h"
-#include "Tank.h"
 #include "TankAimingComponent.h"
 #include "Engine/World.h"
 //Depends on MovementComponent via Pathfinding system
@@ -21,9 +20,8 @@ void ATankAiController::Tick(float DeltaTime)
 
 	if (ensure(PlayerTank))
 	{
-		
 		MoveToActor(PlayerTank, AcceptanceRadius);
 		AimingComponent->AimLogging(PlayerTank->GetActorLocation()); 
-		//AITank->Fire(); 
+		AimingComponent->Fire(); 
 	}
 }
