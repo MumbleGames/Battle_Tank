@@ -32,7 +32,7 @@ public:
 protected :
 
 	UPROPERTY(BlueprintReadOnly, Category = "State")
-		EFiringStatus AimingStatus = EFiringStatus::Reloading;
+		EFiringStatus AimingStatus = EFiringStatus::Aiming;
 
 		
 
