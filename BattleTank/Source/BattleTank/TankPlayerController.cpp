@@ -32,7 +32,6 @@ void ATankPlayerController::AimTowardsCrosshair()
 	{
 		AimingComponent->AimLogging(OUTHitLocation);
 	}
-	else {UE_LOG(LogTemp,Warning, TEXT("%f : Can't See Aim-Target"), GetWorld()->GetTimeSeconds()) }
 
 }
 
