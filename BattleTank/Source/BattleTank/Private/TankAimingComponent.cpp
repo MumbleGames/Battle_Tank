@@ -1,7 +1,6 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "TankAimingComponent.h"
-#include "Components/StaticMeshComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "TankBarrel.h"
 #include "TankTurret.h"
@@ -25,7 +24,7 @@ void UTankAimingComponent::Initialise(UTankTurret * TurretToSet, UTankBarrel * B
 
 // Called when the game starts
 
-void UTankAimingComponent::AimLogging(FVector AimLocation, float LaunchSpeed)
+void UTankAimingComponent::AimLogging(FVector AimLocation)
 {
 	if (!ensure(Barrel)) { return; }
 
