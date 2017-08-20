@@ -10,7 +10,6 @@ class UTankBarrel;
 class UTankAimingComponent;
 class UTankTurret;
 class AProjectile;
-class UTankMovementComponent;
 
 
 UCLASS()
@@ -31,15 +30,12 @@ protected:
 
 	UPROPERTY(BlueprintReadOnly)
 	UTankAimingComponent* TankAimingComponent = nullptr;
-
-	UPROPERTY(BlueprintReadOnly)
-	UTankMovementComponent* TankMovementComponent = nullptr;
-
+	
 
 private:
 	// Sets default values for this pawn's properties
 	ATank();
-	
+	//TODO remove once firing is moved to aiming component
 	UPROPERTY(EditDefaultsOnly, Category = "Firing")
 		float LaunchSpeed = 8000; 
 
@@ -48,6 +44,8 @@ private:
 
 	UPROPERTY(EditDefaultsOnly, Category = "Setup")
 		TSubclassOf<AProjectile> ProjectileBlueprint;	 // Alternative
+
+	virtual void BeginPlay() override;
 
 	UTankBarrel* Barrel = nullptr; //TODO Remove
 
