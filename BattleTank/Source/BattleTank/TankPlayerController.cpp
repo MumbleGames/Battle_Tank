@@ -52,7 +52,6 @@ bool ATankPlayerController::GetSightRayHitLocation(FVector &Location) const
 		return GetLookVectorHitLocation(Location, OUTLookLocation, OUTLookDirection);
 	}
 	else {
-		UE_LOG(LogTemp, Warning, TEXT("Unable to find AimDirection and AimLocation"))
 			return false;
 		}
 		// linetrace along that look LookDirection and see what we hit (up to max range)

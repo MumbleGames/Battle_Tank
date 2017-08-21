@@ -36,6 +36,6 @@ void UTankMovementComponent::RequestDirectMove(const FVector & MoveVelocity, boo
 	auto SideVector = FVector::CrossProduct(TankForward, AIForwardIntention);
 
 	IntendMoveForward(ForwardThrow);
-	IntendTurnRight(SideVector.Z*3);
+	IntendTurnRight(SideVector.Z*2.5);
 }
 

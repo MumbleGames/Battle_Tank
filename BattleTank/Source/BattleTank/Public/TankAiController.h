@@ -19,6 +19,6 @@ public:
 
 private:
 	// tells how close the AI can get before firing.
-	float AcceptanceRadius = 5000;
+	float AcceptanceRadius = 2000;
 	
 };
