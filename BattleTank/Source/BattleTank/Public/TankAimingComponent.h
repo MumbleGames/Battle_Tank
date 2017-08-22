@@ -12,7 +12,7 @@ class UTankTurret; // Holds Turret Property
 class AProjectile;
 
 UENUM()
-enum class EFiringStatus : uint8 { Reloading, Aiming, Locked};
+enum class EFiringStatus : uint8 { Reloading, Aiming, Locked, OutOfAmmo};
 /**
 * Responsible for aiming the tank's fires
 */
@@ -29,13 +29,19 @@ public:
 	UFUNCTION(BlueprintCallable)
 		void Fire();
 
+	UFUNCTION(BlueprintCallable)
+	void DecreaseAmmo();
+	
 	void AimLogging(FVector AimLocation);
 	
+	EFiringStatus GetAimingStatus() const;
 	
 protected :
 
 	UPROPERTY(BlueprintReadOnly, Category = "State")
 		EFiringStatus AimingStatus = EFiringStatus::Aiming;
+	UPROPERTY(BlueprintReadOnly, Category = "Firing")
+		int32 Ammo = 3;
 
 private:
 	// Sets default values for this component's properties

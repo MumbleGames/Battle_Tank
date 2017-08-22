@@ -17,8 +17,13 @@ public:
 	void BeginPlay() override;
 	void Tick(float DeltaTime) override;
 
+protected :
+
+	UPROPERTY(EditDefaultsOnly, Category = "Setup")
+		float AcceptanceRadius = 8000;
+
 private:
-	// tells how close the AI can get before firing.
-	float AcceptanceRadius = 2000;
+	
+
 	
 };

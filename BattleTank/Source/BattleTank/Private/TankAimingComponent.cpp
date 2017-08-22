@@ -31,16 +31,14 @@ void UTankAimingComponent::Initialise(UTankTurret * TurretToSet, UTankBarrel * B
 
 void UTankAimingComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction * ThisTickFunction)
 {
-	if ((FPlatformTime::Seconds() - LastFireTime) < ReloadTimeInSeconds)
-	{
-		AimingStatus = EFiringStatus::Reloading;
-	}
-	else if (IsBarrelMoving())
-	{
-		AimingStatus = EFiringStatus::Aiming;
-	}
-	else { AimingStatus = EFiringStatus::Locked; 
-	}
+	if (Ammo == 0) AimingStatus = EFiringStatus::OutOfAmmo;
+	else {
+		if ((FPlatformTime::Seconds() - LastFireTime) < ReloadTimeInSeconds)
+			AimingStatus = EFiringStatus::Reloading;
+		else if (IsBarrelMoving())
+			AimingStatus = EFiringStatus::Aiming;
+		else  AimingStatus = EFiringStatus::Locked;
+		}
 }
 
 bool UTankAimingComponent::IsBarrelMoving()
@@ -74,6 +72,11 @@ void UTankAimingComponent::AimLogging(FVector AimLocation)
 	}
 }
 
+EFiringStatus UTankAimingComponent::GetAimingStatus() const
+{
+	return AimingStatus;
+}
+
 void UTankAimingComponent::MoveBarrel(FVector DirectionVector)
 {
 	if (!ensure(Barrel)) { return; }
@@ -90,13 +93,13 @@ void UTankAimingComponent::MoveTurret(FVector DirectionVector)
 	auto TurretRotator = Turret->GetForwardVector().Rotation();
 	auto AimRotator = DirectionVector.Rotation();
 	auto DeltaRotator = AimRotator - TurretRotator;
-	if (abs(DeltaRotator.Yaw) > 180.0) DeltaRotator.Yaw = -DeltaRotator.Yaw;
+	if (FMath::Abs<float>(DeltaRotator.Yaw) > 180.0) DeltaRotator.Yaw = -DeltaRotator.Yaw;
 	Turret->Turn(DeltaRotator.Yaw);
 }
 
 void UTankAimingComponent::Fire()
 {
-	if (AimingStatus!=EFiringStatus::Reloading)
+	if (AimingStatus==EFiringStatus::Aiming || AimingStatus==EFiringStatus::Locked)
 	{
 		if (!ensure(Barrel)) return;
 		if (!ensure(ProjectileBlueprint)) return;
@@ -105,7 +108,13 @@ void UTankAimingComponent::Fire()
 		{
 			Projectile->LaunchProjectile(LaunchSpeed);
 			LastFireTime = FPlatformTime::Seconds();
+			DecreaseAmmo();
 			
 		}
 	}
+}
+
+void UTankAimingComponent::DecreaseAmmo()
+{
+	Ammo = FMath::Clamp<int32>(Ammo - 1,0,3); 
 }
