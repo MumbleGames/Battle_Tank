@@ -18,6 +18,8 @@ public :
 	void BeginPlay() override;
 	void Tick(float Deltatime) override;
 
+	UFUNCTION()
+		void OnTankDeath();
 
 protected:
 
@@ -26,6 +28,7 @@ protected:
 
 private :
 
+	virtual void SetPawn(APawn* InPawn) override;
 	// move the barrel so that a shot would hit where the crosshair intersects the world
 	void AimTowardsCrosshair();
 	bool GetSightRayHitLocation(FVector& Location) const;

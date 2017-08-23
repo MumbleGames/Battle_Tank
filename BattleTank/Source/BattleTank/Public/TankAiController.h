@@ -16,6 +16,9 @@ public:
 
 	void BeginPlay() override;
 	void Tick(float DeltaTime) override;
+	
+	UFUNCTION()
+		void OnTankDeath();
 
 protected :
 
@@ -23,7 +26,7 @@ protected :
 		float AcceptanceRadius = 8000;
 
 private:
-	
 
+	virtual void SetPawn(APawn* InPawn) override;
 	
 };
