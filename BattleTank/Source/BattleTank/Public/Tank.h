@@ -12,10 +12,17 @@ class BATTLETANK_API ATank : public APawn
 {
 	GENERATED_BODY()
 
-public:	// Called to bind functionality to input
+public:	
+	//called by ApplyRadialDamage (sur projectile.cpp)
+	virtual float TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser) override;
 		
-
 private:
 	// Sets default values for this pawn's properties
 	ATank();
+	UPROPERTY(EditDefaultsOnly, Category = "Setup")
+		int32 MaxHealth = 100;
+	UPROPERTY(VisibleAnywhere, Category = "Setup")
+		int32 CurrentHealth = MaxHealth;
+
+	
 };

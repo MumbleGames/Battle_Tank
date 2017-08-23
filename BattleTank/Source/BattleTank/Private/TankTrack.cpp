@@ -12,6 +12,7 @@ UTankTrack::UTankTrack()
 void UTankTrack::BeginPlay()
 {
 	Super::BeginPlay();
+	// appelle la Delegate function OnHit dès que le track est hit
 	OnComponentHit.AddDynamic(this, &UTankTrack::OnHit);
 }
 

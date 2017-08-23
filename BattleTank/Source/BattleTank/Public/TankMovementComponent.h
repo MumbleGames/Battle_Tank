@@ -30,7 +30,7 @@ public :
 
 
 private :
-
+	// est appelé par MoveToActor dans TankAiController
 	virtual void RequestDirectMove(const FVector& MoveVelocity, bool bForceMaxSpeed) override;	
 
 	UTankTrack* LeftTrack = nullptr;

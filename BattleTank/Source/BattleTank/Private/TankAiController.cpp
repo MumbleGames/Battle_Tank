@@ -19,7 +19,7 @@ void ATankAiController::Tick(float DeltaTime)
 	auto PlayerTank = GetWorld()->GetFirstPlayerController()->GetPawn();
 
 	if (ensure(PlayerTank))
-	{
+	{	//Appelle RequestDirectMove dans TankMovementComponent
 		MoveToActor(PlayerTank, AcceptanceRadius);
 		AimingComponent->AimLogging(PlayerTank->GetActorLocation()); 
 

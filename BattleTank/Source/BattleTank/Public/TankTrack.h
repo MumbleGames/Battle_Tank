@@ -24,7 +24,7 @@ public :
 		float TrackMaxDrivingForce = 1500000;
 private :
 	UTankTrack();
-
+	//Delegate Declaration : On Hit est appelé dès que le track est "hit" par qqch
 	UFUNCTION()
 	void OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, FVector NormalImpulse, const FHitResult& Hit);
 
