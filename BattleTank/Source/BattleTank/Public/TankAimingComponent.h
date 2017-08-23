@@ -40,8 +40,9 @@ protected :
 
 	UPROPERTY(BlueprintReadOnly, Category = "State")
 		EFiringStatus AimingStatus = EFiringStatus::Aiming;
-	UPROPERTY(BlueprintReadOnly, Category = "Firing")
-		int32 Ammo = 3;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Firing")
+		int32 Ammo;
 
 private:
 	// Sets default values for this component's properties

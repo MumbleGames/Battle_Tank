@@ -116,5 +116,5 @@ void UTankAimingComponent::Fire()
 
 void UTankAimingComponent::DecreaseAmmo()
 {
-	Ammo = FMath::Clamp<int32>(Ammo - 1,0,3); 
+	if (Ammo > 0) Ammo--;
 }
