@@ -16,6 +16,9 @@ public:
 	//called by ApplyRadialDamage (sur projectile.cpp)
 	virtual float TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser) override;
 		
+	//returns current health as a % of MaxHealth
+	UFUNCTION(BlueprintPure, Category="Health")
+	float GetHealthPercent() const;
 private:
 	// Sets default values for this pawn's properties
 	ATank();
