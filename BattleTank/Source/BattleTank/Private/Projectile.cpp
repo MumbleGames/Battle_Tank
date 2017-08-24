@@ -43,6 +43,7 @@ void AProjectile::BeginPlay()
 
 void AProjectile::LaunchProjectile(float Speed)
 {
+	Firing();
 	ProjectileMovement->SetVelocityInLocalSpace(FVector::ForwardVector * Speed);
 	ProjectileMovement->Activate();
 }
@@ -52,12 +53,14 @@ void AProjectile::OnHit(UPrimitiveComponent * HitComponent, AActor * OtherActor,
 	LaunchBlast->Deactivate();
 	ImpactBlast->Activate();
 	ExplosionForce->FireImpulse();
+	Exploding();
 
 	SetRootComponent(ImpactBlast);
 	CollisionMesh->DestroyComponent();
-
-	UGameplayStatics::ApplyRadialDamage(this, ProjectileDamage, GetActorLocation(), ExplosionForce->Radius, UDamageType::StaticClass(), TArray<AActor*>());
-
+	if (ensure(Instigator))
+	{
+			UGameplayStatics::ApplyRadialDamage(this, ProjectileDamage, GetActorLocation(), ExplosionForce->Radius, UDamageType::StaticClass(), TArray<AActor*>(),Instigator);
+	}
 	FTimerHandle TimerHandle;
 	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &AProjectile::OnTimer, DestroyDelay);
 }

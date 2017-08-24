@@ -103,9 +103,12 @@ void UTankAimingComponent::Fire()
 	{
 		if (!ensure(Barrel)) return;
 		if (!ensure(ProjectileBlueprint)) return;
-		auto Projectile = GetWorld()->SpawnActor<AProjectile>(ProjectileBlueprint, Barrel->GetSocketLocation(FName("Projectile")), Barrel->GetSocketRotation(FName("Projectile")));
+		auto SpawnParameters = FActorSpawnParameters();
+		SpawnParameters.Instigator = Cast<APawn>(GetOwner());
+		auto Projectile = GetWorld()->SpawnActor<AProjectile>(ProjectileBlueprint, Barrel->GetSocketLocation(FName("Projectile")), Barrel->GetSocketRotation(FName("Projectile")),SpawnParameters);
 		if (ensure(Projectile))
 		{
+			UE_LOG(LogTemp, Warning, TEXT("Damage Causer sent is %s"),*SpawnParameters.Instigator->GetName())
 			Projectile->LaunchProjectile(LaunchSpeed);
 			LastFireTime = FPlatformTime::Seconds();
 			DecreaseAmmo();

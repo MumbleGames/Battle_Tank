@@ -27,7 +27,7 @@ public:
 private:
 	// Sets default values for this pawn's properties
 	ATank();
-	UPROPERTY(EditDefaultsOnly, Category = "Setup")
+	UPROPERTY(EditAnywhere, Category = "Setup")
 		int32 MaxHealth = 100;
 	UPROPERTY(VisibleAnywhere, Category = "Setup")
 		int32 CurrentHealth = MaxHealth;

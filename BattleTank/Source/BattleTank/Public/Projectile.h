@@ -26,6 +26,11 @@ protected:
 	UPROPERTY(EditDefaultsOnly)
 	float DestroyDelay = 5;
 
+	UFUNCTION(BlueprintImplementableEvent)
+		void Firing();
+	UFUNCTION(BlueprintImplementableEvent)
+		void Exploding();
+
 public:	
 
 	void LaunchProjectile(float Speed);
