@@ -4,11 +4,17 @@
 #include "TankAimingComponent.h"
 #include "Engine/World.h"
 #include "Tank.h"
+#include "BattleTankGameModeBase.h"
 //Depends on MovementComponent via Pathfinding system
 
 void ATankAiController::BeginPlay()
 {
 	Super::BeginPlay();
+		if (GetPawn()->GetClass()->IsChildOf(ATank::StaticClass()))
+		{
+			if (!ensure(GameMode)) { return; }
+			GameMode->EnnemyCount += 1;
+		}
 }
 
 void ATankAiController::Tick(float DeltaTime)
@@ -32,7 +38,18 @@ void ATankAiController::Tick(float DeltaTime)
 void ATankAiController::OnTankDeath()
 {
 	if (!GetPawn()) return;
+	if (GetPawn()->GetClass()->IsChildOf(ATank::StaticClass()))
+	{
+		if (!ensure(GameMode)) { return; }
+		GameMode->EnnemyCount -= 1;
+		EnnemyDown();
+	}
 	GetPawn()->DetachFromControllerPendingDestroy();
+}
+
+void ATankAiController::SettingGameMode(ABattleTankGameModeBase * GameModeToSet)
+{
+	GameMode = GameModeToSet;
 }
 
 void ATankAiController::SetPawn(APawn * InPawn)

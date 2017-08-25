@@ -25,6 +25,8 @@ protected:
 
 	UFUNCTION(BlueprintImplementableEvent, Category = "Setup")
 		void FoundAimingComponent(UTankAimingComponent* AimingCompRef);
+	UFUNCTION(BlueprintImplementableEvent, Category = "Setup")
+		void DeathPoPScreen();
 
 private :
 

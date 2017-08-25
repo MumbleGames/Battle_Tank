@@ -14,7 +14,8 @@ class BATTLETANK_API ABattleTankGameModeBase : public AGameModeBase
 {
 	GENERATED_BODY()
 	
-	
-	
-	
+public:
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Setup")
+		int32 EnnemyCount=0;
+
 };

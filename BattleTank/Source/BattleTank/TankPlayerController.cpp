@@ -25,6 +25,7 @@ void ATankPlayerController::Tick(float Deltatime)
 void ATankPlayerController::OnTankDeath()
 {
 	StartSpectatingOnly();
+	DeathPoPScreen();
 }
 
 void ATankPlayerController::SetPawn(APawn * InPawn)
@@ -88,7 +89,8 @@ bool ATankPlayerController::GetLookVectorHitLocation(FVector & HitLocation,FVect
 {
 	FHitResult Hit;
 	FVector End = Start + AimDirection*LineTraceRange;
-	if (GetWorld()->LineTraceSingleByChannel(Hit, Start, End, ECollisionChannel::ECC_Visibility))
+	FCollisionQueryParams Params = FCollisionQueryParams();
+	if (GetWorld()->LineTraceSingleByChannel(Hit, Start, End, ECollisionChannel::ECC_Visibility,Params))
 	{
 		HitLocation = Hit.Location;
 		return true;
