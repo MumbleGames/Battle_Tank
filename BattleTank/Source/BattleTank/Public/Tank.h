@@ -1,5 +1,5 @@
 // Fill out your copyright notice in the Description page of Project Settings.
-// créer des images et des boutons pour les widget de victoire et de défaite
+//DONE : créer des images et des boutons pour les widget de victoire et de défaite
 // faire en sorte que les barres de vie disparaissent derrière le décor en mettant l'option "world" au lieu de screen , et faire tourner le widget pour qu'il fasse face à l'écran
 // faire un screenshake
 
