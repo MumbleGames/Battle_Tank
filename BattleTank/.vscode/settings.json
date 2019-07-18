@@ -1,0 +1,10 @@
+{
+	"files.exclude": {
+		"D:/Documents and Settings/tango2999/Mes documents/Unreal Projects/04_BattleTank/BattleTank/.vs": true,
+		"D:/Documents and Settings/tango2999/Mes documents/Unreal Projects/04_BattleTank/BattleTank/.vscode": true,
+		"D:/Documents and Settings/tango2999/Mes documents/Unreal Projects/04_BattleTank/BattleTank/Content": true,
+		"D:/Documents and Settings/tango2999/Mes documents/Unreal Projects/04_BattleTank/BattleTank/Debug": true,
+		"D:/Documents and Settings/tango2999/Mes documents/Unreal Projects/04_BattleTank/BattleTank/Intermediate": true,
+		"D:/Documents and Settings/tango2999/Mes documents/Unreal Projects/04_BattleTank/BattleTank/Saved": true
+	}
+}
